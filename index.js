@@ -35,6 +35,15 @@ app.get("/chefs/:id", (req, res) => {
   res.send(singleData);
 });
 
+app.get("/chefs/filter/:num", (req, res) => {
+  const num = parseInt(req.params.num);
+  if (num !== String && num < 100) {
+    const filteredData = chefs.slice(0, num);
+    res.send(filteredData);
+  }
+  res.send([]);
+});
+
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
 });
